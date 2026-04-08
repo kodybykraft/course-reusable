@@ -38,6 +38,30 @@ export const MOCK_MODULES: Record<string, { id: string; title: string; position:
       { id: 'l15', title: 'Caching Strategies', position: 2, contentType: 'text', durationMinutes: null },
     ]},
   ],
+  'css-animations': [
+    { id: 'm6', title: 'CSS Transitions', position: 0, lessons: [
+      { id: 'l16', title: 'Transition Properties', position: 0, contentType: 'video', durationMinutes: 10 },
+      { id: 'l17', title: 'Timing Functions', position: 1, contentType: 'text', durationMinutes: null },
+      { id: 'l18', title: 'Hover & Focus Effects', position: 2, contentType: 'video', durationMinutes: 12 },
+    ]},
+    { id: 'm7', title: 'Keyframe Animations', position: 1, lessons: [
+      { id: 'l19', title: '@keyframes Syntax', position: 0, contentType: 'video', durationMinutes: 14 },
+      { id: 'l20', title: 'Animation Properties', position: 1, contentType: 'text', durationMinutes: null },
+      { id: 'l21', title: 'Loading Spinners Project', position: 2, contentType: 'video', durationMinutes: 20 },
+    ]},
+  ],
+  'node-api-design': [
+    { id: 'm8', title: 'Express Fundamentals', position: 0, lessons: [
+      { id: 'l22', title: 'Setting Up Express', position: 0, contentType: 'video', durationMinutes: 8 },
+      { id: 'l23', title: 'Routing & Middleware', position: 1, contentType: 'text', durationMinutes: null },
+      { id: 'l24', title: 'Error Handling', position: 2, contentType: 'video', durationMinutes: 15 },
+    ]},
+    { id: 'm9', title: 'Authentication', position: 1, lessons: [
+      { id: 'l25', title: 'JWT Basics', position: 0, contentType: 'video', durationMinutes: 16 },
+      { id: 'l26', title: 'Passport.js Integration', position: 1, contentType: 'video', durationMinutes: 22 },
+      { id: 'l27', title: 'Role-Based Access', position: 2, contentType: 'text', durationMinutes: null },
+    ]},
+  ],
 };
 
 export const MOCK_LESSON_CONTENT: Record<string, { contentType: 'video' | 'text'; contentUrl?: string; contentText?: string }> = {
@@ -56,6 +80,18 @@ export const MOCK_LESSON_CONTENT: Record<string, { contentType: 'video' | 'text'
   l13: { contentType: 'video', contentUrl: 'https://www.youtube.com/watch?v=Tn6-PIqc4UM' },
   l14: { contentType: 'video', contentUrl: 'https://www.youtube.com/watch?v=Tn6-PIqc4UM' },
   l15: { contentType: 'text', contentText: '<h2>Caching Strategies</h2><p>Next.js provides multiple layers of caching:</p><ol><li><strong>Request Memoization</strong> — deduplicates identical fetch calls in a single render</li><li><strong>Data Cache</strong> — persists fetch results across requests</li><li><strong>Full Route Cache</strong> — caches the rendered HTML of static routes</li><li><strong>Router Cache</strong> — client-side cache of visited routes</li></ol><p>Understanding when to use <code>cache: "force-cache"</code> vs <code>cache: "no-store"</code> vs revalidation is key to building performant Next.js applications.</p>' },
+  l16: { contentType: 'video', contentUrl: 'https://www.youtube.com/watch?v=Tn6-PIqc4UM' },
+  l17: { contentType: 'text', contentText: '<h2>Timing Functions</h2><p>CSS timing functions control the speed curve of transitions:</p><ul><li><code>ease</code> — slow start, fast middle, slow end (default)</li><li><code>linear</code> — constant speed</li><li><code>ease-in</code> — slow start</li><li><code>ease-out</code> — slow end</li><li><code>cubic-bezier(n,n,n,n)</code> — custom curve</li></ul><p>Use <code>cubic-bezier(0.4, 0, 0.2, 1)</code> for Material Design-style easing.</p>' },
+  l18: { contentType: 'video', contentUrl: 'https://www.youtube.com/watch?v=Tn6-PIqc4UM' },
+  l19: { contentType: 'video', contentUrl: 'https://www.youtube.com/watch?v=Tn6-PIqc4UM' },
+  l20: { contentType: 'text', contentText: '<h2>Animation Properties</h2><p>Key animation properties:</p><ul><li><code>animation-name</code> — which @keyframes to use</li><li><code>animation-duration</code> — how long one cycle takes</li><li><code>animation-iteration-count</code> — how many times (or <code>infinite</code>)</li><li><code>animation-direction</code> — normal, reverse, alternate</li><li><code>animation-fill-mode</code> — what styles apply before/after</li></ul>' },
+  l21: { contentType: 'video', contentUrl: 'https://www.youtube.com/watch?v=Tn6-PIqc4UM' },
+  l22: { contentType: 'video', contentUrl: 'https://www.youtube.com/watch?v=Tn6-PIqc4UM' },
+  l23: { contentType: 'text', contentText: '<h2>Routing & Middleware</h2><p>Express routing maps HTTP methods and URLs to handler functions:</p><pre><code>app.get("/users", listUsers);\napp.post("/users", createUser);\napp.get("/users/:id", getUser);</code></pre><p>Middleware functions run before your route handler. Use them for logging, auth, body parsing, and error handling.</p>' },
+  l24: { contentType: 'video', contentUrl: 'https://www.youtube.com/watch?v=Tn6-PIqc4UM' },
+  l25: { contentType: 'video', contentUrl: 'https://www.youtube.com/watch?v=Tn6-PIqc4UM' },
+  l26: { contentType: 'video', contentUrl: 'https://www.youtube.com/watch?v=Tn6-PIqc4UM' },
+  l27: { contentType: 'text', contentText: '<h2>Role-Based Access Control</h2><p>RBAC restricts system access based on user roles:</p><ol><li>Define roles (admin, editor, viewer)</li><li>Assign permissions to each role</li><li>Check permissions in middleware</li></ol><pre><code>function requireRole(role) {\n  return (req, res, next) => {\n    if (req.user.role !== role) {\n      return res.status(403).json({ error: "Forbidden" });\n    }\n    next();\n  };\n}</code></pre>' },
 };
 
 export const MOCK_ENROLLED_COURSES = [

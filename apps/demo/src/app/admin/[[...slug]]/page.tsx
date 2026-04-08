@@ -32,10 +32,12 @@ try { ({ CouponsListClient, CouponFormClient } = require('./_pages/coupons-clien
 try { ({ RevenueClient } = require('./_pages/revenue-client')); } catch {}
 try { ({ SettingsGeneralClient, SettingsPaymentsClient, SettingsBrandingClient } = require('./_pages/settings-client')); } catch {}
 
+let QuizzesListPage: any = () => <PageHeader title="Quizzes" />;
 let CertificatesPage: any = () => <PageHeader title="Certificates" />;
 let StaffPage: any = () => <PageHeader title="Staff" />;
 let WebhooksPage: any = () => <PageHeader title="Webhooks" />;
 let ActivityLogPage: any = () => <PageHeader title="Activity Log" />;
+try { ({ QuizzesListPage } = require('./_pages/quizzes-list-client')); } catch {}
 try { ({ CertificatesPage } = require('./_pages/certificates-client')); } catch {}
 try { ({ StaffPage } = require('./_pages/staff-client')); } catch {}
 try { ({ WebhooksPage } = require('./_pages/webhooks-client')); } catch {}
@@ -168,8 +170,8 @@ function renderPage(slug?: string[]) {
     case 'enrollments': return <EnrollmentsListClient />;
 
     case 'quizzes':
-      if (sub) return <QuizBuilderClient quizId={sub} />;
-      return <PageHeader title="Quizzes" />;
+      if (sub) return <QuizBuilderClient />;
+      return <QuizzesListPage />;
 
     case 'assignments':
       if (sub === 'grade' && slug?.[2]) return <GradingClient submissionId={slug[2]} />;

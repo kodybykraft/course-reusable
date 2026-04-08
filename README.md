@@ -198,6 +198,18 @@ Full CRUD for courses, modules, lessons, enrollments, quizzes, assignments, disc
 | Lesson Unlocked | Drip content released |
 | Abandoned Course Nudge | 7 days inactive (polling) |
 
+## Customizing Certificates
+
+The certificate view page renders a printable diploma-style certificate with your student's name, course name, date, instructor, and a unique verification code. To brand it for your platform:
+
+1. **Copy the certificate page** from `apps/demo/src/app/(student)/certificates/[code]/page.tsx` into your own app
+2. **Change colors** — replace the gold border (`#d4af37`) and accent colors with your brand palette
+3. **Add your logo** — replace the text header with your logo image
+4. **Custom template** — the `CertificateService` supports certificate templates stored in the database (`course_certificate_templates` table). Create HTML templates with `{{studentName}}`, `{{courseName}}`, `{{date}}` variables
+5. **PDF generation** — for downloadable PDFs, use the `@course/server` `CertificateService.issue()` method which generates certificates with unique verification codes
+
+The certificate card component (`CertificateCard` from `@course/react`) is a summary widget for dashboards. The full certificate view is a separate page you build in your app.
+
 ## Embedding in Existing App
 
 If you have an existing admin dashboard, import individual page components:

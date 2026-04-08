@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { PageHeader, Card, Badge, formatMoney } from './_shared';
 import { STUDENTS, ENROLLMENTS, COURSES } from './_data';
+import { EmailDrawer } from './email-drawer';
 
 /* ==========================================================================
    Types
@@ -92,6 +93,7 @@ export function StudentsListClient() {
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(true);
   const searchTimer = useRef<ReturnType<typeof setTimeout>>(undefined);
+  const [emailTarget, setEmailTarget] = useState<Student | null>(null);
 
   const fetchStudents = useCallback(async (query: string, pg: number) => {
     setLoading(true);
@@ -157,6 +159,7 @@ export function StudentsListClient() {
                 <th style={{ textAlign: 'right' }}>Completed</th>
                 <th style={{ textAlign: 'right' }}>Total Spent</th>
                 <th>Joined</th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -172,6 +175,12 @@ export function StudentsListClient() {
                   <td style={{ textAlign: 'right' }}>{s.completedCourses}</td>
                   <td style={{ textAlign: 'right' }}>{formatMoney(s.totalSpent)}</td>
                   <td style={{ color: 'var(--admin-text-secondary)' }}>{s.joinedAt}</td>
+                  <td>
+                    <button onClick={(e) => { e.preventDefault(); setEmailTarget(s); }} style={{ background: 'none', border: '1px solid var(--admin-border, #1e293b)', borderRadius: 6, padding: '4px 10px', cursor: 'pointer', color: 'var(--admin-text-secondary)', fontSize: '12px', display: 'flex', alignItems: 'center', gap: 4 }}>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13 2 4"/></svg>
+                      Email
+                    </button>
+                  </td>
                 </tr>
               ))}
             </tbody>
@@ -186,6 +195,15 @@ export function StudentsListClient() {
           </div>
         </div>
       </div>
+
+      {emailTarget && (
+        <EmailDrawer
+          isOpen={!!emailTarget}
+          onClose={() => setEmailTarget(null)}
+          recipientEmail={emailTarget.email}
+          recipientName={`${emailTarget.firstName} ${emailTarget.lastName}`}
+        />
+      )}
     </div>
   );
 }
@@ -199,6 +217,7 @@ export function StudentDetailClient({ student: initial }: { student: Student }) 
   const [enrolledCourses, setEnrolledCourses] = useState<EnrolledCourse[]>([]);
   const [purchases, setPurchases] = useState<Purchase[]>([]);
   const [loading, setLoading] = useState(true);
+  const [showEmail, setShowEmail] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
@@ -254,6 +273,12 @@ export function StudentDetailClient({ student: initial }: { student: Student }) 
       <PageHeader
         title={`${student.firstName} ${student.lastName}`}
         breadcrumbs={[{ label: 'Students', href: '/admin/students' }, { label: `${student.firstName} ${student.lastName}` }]}
+        actions={
+          <button type="button" onClick={() => setShowEmail(true)} className="admin-btn admin-btn--primary" style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13 2 4"/></svg>
+            Send Email
+          </button>
+        }
       />
 
       {/* Student info header */}
@@ -347,6 +372,13 @@ export function StudentDetailClient({ student: initial }: { student: Student }) 
           </table>
         )}
       </Card>
+
+      <EmailDrawer
+        isOpen={showEmail}
+        onClose={() => setShowEmail(false)}
+        recipientEmail={student.email}
+        recipientName={`${student.firstName} ${student.lastName}`}
+      />
     </div>
   );
 }

@@ -43,7 +43,8 @@ export default function DashboardPage() {
         <h2 style={{ fontSize: '1.25rem', fontWeight: 700, marginBottom: '1rem' }}>Certificates</h2>
         <CertificateCard
           certificate={MOCK_CERTIFICATE}
-          verifyUrl="/verify"
+          verifyUrl={`/certificates/${MOCK_CERTIFICATE.uniqueCode}`}
+          onDownload={() => router.push(`/certificates/${MOCK_CERTIFICATE.uniqueCode}`)}
         />
       </section>
 

@@ -22,14 +22,17 @@
   "publishConfig": {
     "access": "public"
   },
-  "files": ["dist", "README.md"],
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "dependencies": {
     "@course/core": "workspace:*",
     "drizzle-orm": "^0.38.0",
     "postgres": "^3.4.0"
   },
   "devDependencies": {
-    "drizzle-kit": "^0.30.0",
+    "drizzle-kit": "^0.31.10",
     "tsx": "^4.19.0",
     "typescript": "^5.7.0"
   }

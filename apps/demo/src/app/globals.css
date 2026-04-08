@@ -1,6 +1,55 @@
+/* ============================================================
+   Student Layout
+   ============================================================ */
+
+.student-nav {
+  background: #fff;
+  border-bottom: 1px solid #e5e7eb;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.student-nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.5rem;
+  height: 56px;
+}
+
+.student-nav-brand {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #111827;
+  text-decoration: none;
+}
+
+.student-nav-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.student-nav-links a {
+  color: #4b5563;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.student-nav-links a:hover {
+  color: #2D60FF;
+}
+
+.student-main {
+  min-height: calc(100vh - 56px);
+  background: #f9fafb;
+}
 
 /* ============================================================
-   E-Com Admin — BankDash Design System
+   Course Admin — BankDash Design System
    Fluid responsive design that adapts to ANY screen size.
    Override --admin-* variables to match your site's brand.
    ============================================================ */

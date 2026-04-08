@@ -32,6 +32,15 @@ try { ({ CouponsListClient, CouponFormClient } = require('./_pages/coupons-clien
 try { ({ RevenueClient } = require('./_pages/revenue-client')); } catch {}
 try { ({ SettingsGeneralClient, SettingsPaymentsClient, SettingsBrandingClient } = require('./_pages/settings-client')); } catch {}
 
+let CertificatesPage: any = () => <PageHeader title="Certificates" />;
+let StaffPage: any = () => <PageHeader title="Staff" />;
+let WebhooksPage: any = () => <PageHeader title="Webhooks" />;
+let ActivityLogPage: any = () => <PageHeader title="Activity Log" />;
+try { ({ CertificatesPage } = require('./_pages/certificates-client')); } catch {}
+try { ({ StaffPage } = require('./_pages/staff-client')); } catch {}
+try { ({ WebhooksPage } = require('./_pages/webhooks-client')); } catch {}
+try { ({ ActivityLogPage } = require('./_pages/activity-log-client')); } catch {}
+
 export const dynamic = 'force-dynamic';
 
 /* ==========================================================================
@@ -167,7 +176,7 @@ function renderPage(slug?: string[]) {
       return <AssignmentsListClient />;
 
     case 'certificates':
-      return <PageHeader title="Certificates" />;
+      return <CertificatesPage />;
 
     case 'discussions':
       if (sub) return <DiscussionsListClient />;
@@ -180,9 +189,9 @@ function renderPage(slug?: string[]) {
       if (sub) return <CouponFormClient couponId={sub} />;
       return <CouponsListClient />;
 
-    case 'webhooks': return <PageHeader title="Webhooks" />;
-    case 'staff': return <PageHeader title="Staff" />;
-    case 'activity-log': return <PageHeader title="Activity Log" />;
+    case 'webhooks': return <WebhooksPage />;
+    case 'staff': return <StaffPage />;
+    case 'activity-log': return <ActivityLogPage />;
 
     case 'settings': return <SettingsLayout sub={sub} />;
 

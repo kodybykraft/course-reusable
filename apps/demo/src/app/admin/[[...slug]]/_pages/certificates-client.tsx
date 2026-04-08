@@ -23,7 +23,7 @@ export function CertificatesPage() {
       <Card>
         <table className="admin-table">
           <thead>
-            <tr><th>Student</th><th>Course</th><th>Certificate Code</th><th>Issued</th></tr>
+            <tr><th>Student</th><th>Course</th><th>Certificate Code</th><th>Issued</th><th>Actions</th></tr>
           </thead>
           <tbody>
             {filtered.map((cert) => (
@@ -35,6 +35,12 @@ export function CertificatesPage() {
                 <td>{cert.courseName}</td>
                 <td><code style={{ fontSize: '13px', background: 'var(--admin-bg-alt)', padding: '2px 8px', borderRadius: 4 }}>{cert.code}</code></td>
                 <td>{new Date(cert.issuedAt).toLocaleDateString()}</td>
+                <td>
+                  <a href={`/certificates/${cert.code}`} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: 4, padding: '4px 10px', border: '1px solid var(--admin-border, #1e293b)', borderRadius: 6, fontSize: '12px', color: 'var(--admin-text-secondary)', textDecoration: 'none' }}>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                    View
+                  </a>
+                </td>
               </tr>
             ))}
           </tbody>
